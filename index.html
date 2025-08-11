@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Menü (Kunefe 2 sayfa geçişli)</title>
+  <style>
+    /* Genel sayfa stili */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Üst kısım (Header) */
+    header {
+      background-color: #ffc107;
+      padding: 1rem;
+      text-align: center;
+    }
+    header img {
+      max-width: 100px;
+      border-radius: 50%;
+    }
+    header h1 {
+      margin: 0.5rem 0 0 0;
+      color: #333;
+    }
+
+    /* Navigasyon Menüsü */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0;
+    }
+    nav ul li a {
+      display: block;
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      background-color: #ffc107;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    /* Ana içerik alanı */
+    main {
+      max-width: 600px;
+      margin: 1rem auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 5px;
+    }
+    main h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #333;
+    }
+
+    /* Buton stili */
+    .menu-button {
+      display: inline-block;
+      background: #ffc107;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      margin: 0.3rem;
+      border-radius: 5px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .menu-button:hover {
+      background: #ff9800;
+    }
+
+    /* Gösterim alanı */
+    #menuDisplay {
+      margin-top: 1rem;
+      min-height: 400px;
+      background: #eee;
+      padding: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center; 
+    }
+
+    /* Kunefe geçiş butonları */
+    .kunefe-nav {
+      margin-top: 1rem;
+    }
+    .kunefe-nav button {
+      background: #ff9800;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .kunefe-nav button:hover {
+      background: #ff5722;
+    }
+
+    /* Alt bilgi (Footer) */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Üst Kısım (Header) -->
+  <header>
+    <img src="https://raw.githubusercontent.com/ebuzade/menu/30c750a3e084b158307942bee8f65aecc50ec6a2/ozikizler%20kunefe%20logo%202024.png" alt="Restoran Logo">
+    <h1>Ebuzade Restoran Özikizler Künefe</h1>
+  </header>
+
+  <!-- Navigasyon Menüsü -->
+  <nav>
+    <ul>
+      <li><a href="#menuler">Menüler</a></li>
+    </ul>
+  </nav>
+
+  <!-- Ana İçerik -->
+  <main id="menuler">
+    <h2>Menülerimiz</h2>
+    
+    <!-- Kategori Butonları -->
+    <div style="text-align: center;">
+      <button class="menu-button" onclick="showMenu('kebap')">Kebap Çeşitleri</button>
+      <button class="menu-button" onclick="showMenu('lahmacun')">Lahmacun & Pideler</button>
+      <button class="menu-button" onclick="showMenu('kadayif')">Kadayiflar</button>
+      <button class="menu-button" onclick="showMenu('baklava')">Baklavalar</button>
+      <button class="menu-button" onclick="showMenu('katmer')">Katmerler</button>
+      <button class="menu-button" onclick="showMenu('kunefe')">Kunefeler</button>
+      <button class="menu-button" onclick="showMenu('dondurma')">Dondurmalar</button>
+      <button class="menu-button" onclick="showMenu('icecek')">İçecekler</button>
+    </div>
+
+    <!-- İçeriğin Gösterileceği Alan -->
+    <div id="menuDisplay"></div>
+  </main>
+
+  <!-- Alt Bilgi (Footer) -->
+  <footer>
+    © 2025 Ebuzade Restoran Özikizler Künefe. Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    // Sayfa yüklendiğinde ilk açılacak menü
+    document.addEventListener('DOMContentLoaded', () => {
+      showMenu('kebap');
+    });
+
+    function showMenu(type) {
+      const container = document.getElementById('menuDisplay');
+      container.innerHTML = ''; // Önceki içerikleri temizle
+
+      if (type === 'kebap') {
+        createImage(container, 
+          'https://raw.githubusercontent.com/ebuzade/menu/refs/heads/main/Ozikizler%20Kebap%20Durum.jpg');
+      
+      } else if (type === 'lahmacun') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Lahmacun%20Pide.jpeg?raw=true');
+
+      } else if (type === 'kadayif') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Kadayif.jpeg?raw=true');
+
+      } else if (type === 'baklava') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Baklava.jpeg?raw=true');
+
+      } else if (type === 'katmer') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Katmerler.jpeg?raw=true');
+
+      } else if (type === 'kunefe') {
+        // Kunefe 2 sayfa geçiş
+        const kunefeImages = [
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20kunefe.jpeg?raw=true',
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Kunefe%202.jpeg?raw=true'
+        ];
+        let currentIndex = 0;
+
+        const kunefeContainer = document.createElement('div');
+        kunefeContainer.style.display = 'flex';
+        kunefeContainer.style.flexDirection = 'column';
+        kunefeContainer.style.alignItems = 'center';
+
+        const kunefeImg = document.createElement('img');
+        kunefeImg.src = kunefeImages[currentIndex];
+        kunefeImg.style.width = '100%';
+        kunefeImg.style.maxWidth = '600px';
+
+        const navDiv = document.createElement('div');
+        navDiv.classList.add('kunefe-nav');
+
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = 'Önceki';
+        prevBtn.onclick = () => {
+          currentIndex = (currentIndex - 1 + kunefeImages.length) % kunefeImages.length;
+          kunefeImg.src = kunefeImages[currentIndex];
+        };
+
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Sonraki';
+        nextBtn.onclick = () => {
+          currentIndex = (currentIndex + 1) % kunefeImages.length;
+          kunefeImg.src = kunefeImages[currentIndex];
+        };
+
+        navDiv.appendChild(prevBtn);
+        navDiv.appendChild(nextBtn);
+
+        kunefeContainer.appendChild(kunefeImg);
+        kunefeContainer.appendChild(navDiv);
+        container.appendChild(kunefeContainer);
+
+      } else if (type === 'dondurma') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20Dondurma.jpeg?raw=true');
+
+      } else if (type === 'icecek') {
+        createImage(container, 
+          'https://github.com/ebuzade/menu/blob/main/Ozikizler%20İcecekler.jpeg?raw=true');
+      }
+    }
+
+    // Tek bir resim göstermek için yardımcı fonksiyon:
+    function createImage(container, imageUrl) {
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.style.width = '100%';
+      img.style.maxWidth = '600px';
+      container.appendChild(img);
+    }
+  </script>
+</body>
+</html>
